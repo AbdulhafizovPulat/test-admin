@@ -1,0 +1,6 @@
+{
+  "API_URL": "https://localhost:7023/api",
+  "SELF_DOMAIN": "http://127.0.0.1:5173",
+  "SELF_DOMAIN_": "http://localhost:3000",
+  "IMG_DOMAIN": "https://localhost:7023/files"
+}

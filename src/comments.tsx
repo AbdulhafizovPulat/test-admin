@@ -1,46 +1,58 @@
 import {
-    List,
-    Datagrid,
-    TextField,
-    EditButton,
-    SimpleForm,
-    ReferenceInput,
-    TextInput,
-    Edit,
-    Create,
-    UrlField,
-    BulkDeleteButton
-  } from "react-admin";
+  TranslatableInputs,
+  List,
+  Datagrid,
+  TextField,
+  EditButton,
+  SimpleForm,
+  ReferenceInput,
+  TextInput,
+  Edit,
+  Create,
+  UrlField,
+  BulkDeleteButton,
+} from "react-admin";
+import { SearchFilters } from "./search";
 
 
-  export const CommentsList = () => (
-    <List >
-      <Datagrid bulkActionButtons={<BulkDeleteButton mutationMode="pessimistic" />}>
-        <UrlField source="email" />
-        <TextField source="id" />
-        <TextField source="name" />
-        <TextField source="body" />
-        <EditButton />
-      </Datagrid>
-    </List>
-  );
-  export const CommentsEdit = () => (
-    <Edit >
-      <SimpleForm warnWhenUnsavedChanges>
-        <TextInput source="id" disabled />
+export const CommentsList = () => (
+  <List filters={SearchFilters}>
+    <Datagrid
+      bulkActionButtons={<BulkDeleteButton mutationMode="pessimistic" />}
+      sx={{ backgroundColor: "Lavender", "& .RaDatagrid-headerCell": {
+        backgroundColor: "MistyRose",
+    },}}
+    >
+      <UrlField source="email" />
+      <TextField source="id" />
+      <TextField source="name" />
+      <TextField source="body"  sx={{ '& .MuiAvatar': { width: 48} }}  />
+      <EditButton sx={{ fontWeight: "bold" }} />
+    </Datagrid>
+  </List>
+);
+export const CommentsEdit = () => (
+  <Edit>
+    <SimpleForm >
+      <TranslatableInputs locales={["en", "fr", "ru"]}>
+        <TextInput source="email" />
+        <TextInput source="id" />
         <ReferenceInput source="postId" reference="comments" />
         <TextInput source="name" />
         <TextInput source="body" multiline rows={15} />
-      </SimpleForm>
-    </Edit>
-  );
-  export const CommentsCreate = () => (
-    <Create>
-      <SimpleForm warnWhenUnsavedChanges>
-        <ReferenceInput source="postId" reference="comments" />
+      </TranslatableInputs>
+    </SimpleForm>
+  </Edit>
+);
+export const CommentsCreate = () => (
+  <Create>
+    <SimpleForm >
+      <TranslatableInputs locales={["en", "fr", "ru"]}>
+        <TextInput source="email" />
         <TextInput source="name" />
         <TextInput source="body" multiline rows={5} />
-      </SimpleForm>
-    </Create>
-  );
-  
+        <ReferenceInput source="postId" reference="comments" />
+      </TranslatableInputs>
+    </SimpleForm>
+  </Create>
+);

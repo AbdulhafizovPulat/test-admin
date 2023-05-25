@@ -1,7 +1,7 @@
 import polyglotI18nProvider from 'ra-i18n-polyglot';
 import {fr} from './i18n/fr';
 import {en} from './i18n/en'
-import ru from 'ra-language-russian'
+import {ru} from './i18n/ru'
 
 import { TranslationMessages } from 'react-admin';
 
