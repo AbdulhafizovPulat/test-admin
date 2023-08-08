@@ -26,5 +26,5 @@ export const PostFilterSidebar = () => {
 };
 export const SearchFilters = [
     <TextInput source="q" label="Search" alwaysOn />,
-    <ReferenceInput source="userId" label="User" reference="users" />,
+    <ReferenceInput source="name" label="name" reference="applications" />,
 ];

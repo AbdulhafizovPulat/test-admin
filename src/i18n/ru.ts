@@ -3,71 +3,100 @@ import module from "ra-language-russian";
 export const ru = {
   ...module,
   resources: {
-    posts: {
-      name: "Пост |||| Посты",
+    agents: {
+      name: "Агент |||| Агенты",
       fields: {
+        id: "Идентификатор",
+        userId: "Идентификатор пользователя",
+        appId: "Идентификатор приложения",
+      },
+    },
+    apps: {
+      name: "Приложения |||| Приложении",
+      fields: {
+        id: "Идентификатор",
+        name: "Наименование",
+        appType: "Тип приложения",
+      },
+    },
+    categories: {
+      name: "Категория |||| Категории",
+      fields: {
+        id: "Идентификатор",
+        name: "Наименование",
+        upperId: "Верхний идентификатор",
+        locales: "Локали",
+        localeKey: "Ключ локали",
         title: "Заголовок",
-        body: "Основная часть",
-        userId: "ID Пользователя",
-        id: "Идентификатор",
+        description: "Описание",
       },
     },
-    comments: {
-      name: "Комментарий |||| Комментарии",
+    finorgs: {
+      name: "финОрганизация |||| финОрганизации",
       fields: {
-        email: "Электронная почта",
         id: "Идентификатор",
-        name: "Имя",
-        body: "Основная часть",
-        postId: "Идентификатор сообщения",
-      },
-    },
-    photos: {
-      name: "Фото |||| Фото",
-      fields: {
-        albumId: "Идентификатор альбома",
-        id: "Идентификатор",
+        orgId: "Идентификатор организации",
+        mfo: "Мфо",
+        contract: "Контракт",
+        locales: "Локали",
+        localeKey: "Ключ локали",
         title: "Заголовок",
-        url: "URL",
-        thumbnailUrl: "URL эскиза",
       },
     },
-    users: {
-      name: "Пользователь |||| Пользователи",
+    finproducts: {
+      name: "финПродукт |||| финПродукты",
       fields: {
         id: "Идентификатор",
-        name: "Имя",
-        username: "Имя пользователя",
-        email: "Электронная почта",
-        address: {
-          street: "Адрес улицы",
-          suite: "Адресный набор",
-          city: "Адрес город",
-          zipcode: "Почтовый индекс",
-          geo: {
-            lat: "Географическая широта ",
-            lng: "Географическая долгота",
-          },
+        finOrgId: "Идентификатор финОрг",
+        term:{
+          duration: "Продолжительность",
+          type: "Тип",
         },
-        phone: "Телефон",
-        website: "Веб-сайт",
-        company: {
-          name: "Название компании",
-          catchPhrase: "Лозунг",
-          bs: "Бс",
-        },
+        value: "Стоимость",
+        addedValue: "Добавленная стоимость ",
+        comissionValue: "Коммисионные",
+        prepay: "Предоплата",
+        productSource: "Источник продукта",
+        dealType: "Тип сделки",
+        scheduleOn: "График работы",
+        scoreGuarantee: "Оценка гарантии",
+        scoring: "Подсчет баллов",
+        identification: "Идентификация",
+        scheduler: "Планировщик",
+        coBorrower: "Созаёмщик",
+        guarantee: "Гарантия",
+        categories: "Категории",
+        merchants: "Торговцы",
+        locales: "Локали",
+        localeKey: "Ключ локали",
+        title: "Заголовок",
+        description: "Описание",
+      },
+    },
+    merchantagents: {
+      name: "Торговый агент |||| Торговые агенты",
+      fields: {
+        merchantId: "Идентификатор продавца",
+        agentId: "Идентификатор агента",
+        isDisabled: "Отключен",
+        contract: "Контракт",
+      },
+    },
+    merchants: {
+      name: "Торговец |||| Торговцы",
+      fields: {
+        id: "Идентификатор",
+        orgId: "Идентификатор организации",
+        name: "Наименование",
+        bankAccountId: "Идентификатор банковского счета",
+        contract: "Контракт",
+        regionId: "Идентификатор региона",
+        agentid: "Идентификатор агента",
+        locales: "Локали",
+        localeKey: "Ключ локали",
+        address: "Адрес",
+        title: "Заголовок",
       },
     },
   },
-  
-  saved_queries:{
-    subscribed_to_newsletter: 'Подписался на рассылку новостей',
-    yes: 'Да',
-    no: 'Нет',
-    category: 'Категория',
-    tests: 'Тесты',
-    news: 'Новости',
-    deals: 'Сделки',
-    tutorials: 'Учебники',
-  }
 };

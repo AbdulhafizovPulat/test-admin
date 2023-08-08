@@ -6,7 +6,6 @@ export const Dashboard = () => (
     width: 600,
     mr: 135,
   }}>
-    <CardHeader title="Welcome to the administration, hello User!!!" />
-    <CardContent>Lets go administrator...</CardContent>
+    <CardHeader title="Welcome" />
   </Card>
 );

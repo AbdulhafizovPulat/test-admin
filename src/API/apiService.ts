@@ -215,13 +215,10 @@ const api: DataProvider = {
 
     let { json } = await httpClient(url);
     // console.log(json)
-    const res = [];
-    for (const entity of json) {
-      // if(search) {
-      // 	await api.convertToFile(resource, entity);
-      // }
-      res.push(api.generateLocalizations(resource, entity));
-    }
+    const res = json.map((entity : any, index : any) => ({
+      id: index + 1,
+      ...entity,
+    }));
     return {
       data: res,
       total: 2000,
@@ -343,7 +340,14 @@ const api: DataProvider = {
     }).then(({ json }) => ({ data: json })),
 
   deleteMany: async (resource, params) => {
-    return {};
+    const deleteRequests = params.ids.map(id =>
+      httpClient(`${config.API_URL}/${resource}/${id}`, {
+          method: "DELETE"
+      })
+    );
+    const responses = await Promise.all(deleteRequests);
+    const deletedIds = responses.map(response => response.json.id);
+    return { data: deletedIds };
   },
 };
 

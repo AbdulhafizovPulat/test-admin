@@ -3,6 +3,14 @@ import frenchMessages from "ra-language-french";
 export const fr = {
   ...frenchMessages,
   resources: {
+    agents:{
+      name: "Agent |||| Agents",
+      fields: {
+        id: "Identifiant",
+        userId: "ID de l'utilisateur",
+        appId: "ID d'application" 
+      }
+    },
     posts: {
       name: "Poste |||| Des postes",
       fields: {
@@ -10,26 +18,6 @@ export const fr = {
         body: "Corps",
         userId: "Utilisateur(Utilisatrice)",
         id: "Identifiant",
-      },
-    },
-    comments: {
-      name: "Commentaire |||| Commentaires",
-      fields: {
-        email: "E-mail",
-        id: "Identifiant",
-        name: "Nom",
-        body: "Corps",
-        postId: "Identifiant de poste",
-      },
-    },
-    photos: {
-      name: "Photo |||| Photos",
-      fields: {
-        albumId: "IDalbum",
-        id: "Identifiant",
-        title: "Titre",
-        url: "URL",
-        thumbnailUrl: "ThumbnailUrl",
       },
     },
     users: {
