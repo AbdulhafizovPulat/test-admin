@@ -61,12 +61,12 @@ export const  MerchantsShow = () => (
               <TextField source="title" />
             </Datagrid>
           </ArrayField>
-          <EditButton />
         </TabbedShowLayout.Tab>
+
         <TabbedShowLayout.Tab label="merchantagents">
           <ReferenceField
             label="resources.merchants.fields.agentid"
-            source="agents[0].agentId"
+            source="agent_id"
             reference="agents"
           >
             <TextField source="id" />

@@ -1,4 +1,4 @@
-import { 
+import {
   List,
   Datagrid,
   TextField,
@@ -7,59 +7,72 @@ import {
   TextInput,
   Edit,
   Create,
-  BulkDeleteButton,
-  ArrayField,
+  SingleFieldList,
   ArrayInput,
   SimpleFormIterator,
-}from "react-admin";
+  useLocaleState,
+  ReferenceArrayField,
+  ChipField,
+} from "react-admin";
+import  apiProvider  from '../API/apiService';
+import { log } from "console";
+import { title } from "process";
 
-export const CategoriesList = () => (
-<List>
-  <Datagrid
-    bulkActionButtons={<BulkDeleteButton mutationMode="pessimistic" />}
-  >
-    <TextField source="id" />
-    <TextField source="name" />
-    <TextField source="upperId" />
-    <ArrayField source="locales">
-      <Datagrid bulkActionButtons={false}>
-        <TextField source="localeKey" />
-        <TextField source="title" />
-        <TextField source="description" />
+
+export const CategoriesList =  () => {
+  let index : number = 0;
+  const [locale] = useLocaleState();
+  fetch(`https://admin.finance.taqsim.uz/api/categories`, {
+    method: 'GET'}).then(item => item.text()).then(response => {
+    const obj = JSON.parse(response);
+    
+    for (let i = 0; i < obj.length; i++) {
+      const element = obj[i];
+ 
+      element.locales.forEach((item : any, idx : number) => item.localeKey === locale ? index = idx : console.log())
+    }
+  })
+  
+  
+
+  return (
+    <List>
+      <Datagrid>
+          <TextField source={`locales[${index}].title`} />
       </Datagrid>
-    </ArrayField>
-    <EditButton />
-  </Datagrid>
-</List>
-);
+    </List>
+  );
+};
+
+
 export const CategoriesCreate = () => (
-<Create>
-  <SimpleForm>
+  <Create>
+    <SimpleForm>
       <TextInput source="name" />
       <TextInput source="upperId" />
       <ArrayInput source="locales">
-              <SimpleFormIterator inline>
-                  <TextInput source="localeKey" helperText={false} />
-                  <TextInput source="title" helperText={false} />
-                  <TextInput source="description" helperText={false} />
-              </SimpleFormIterator>
+        <SimpleFormIterator inline>
+          <TextInput source="localeKey" helperText={false} />
+          <TextInput source="title" helperText={false} />
+          <TextInput source="description" helperText={false} />
+        </SimpleFormIterator>
       </ArrayInput>
-  </SimpleForm>
-</Create>
+    </SimpleForm>
+  </Create>
 );
 
 export const CategoriesEdit = () => (
-<Edit>
-  <SimpleForm>
+  <Edit>
+    <SimpleForm>
       <TextInput source="name" />
       <TextInput source="upperId" />
       <ArrayInput source="locales">
-              <SimpleFormIterator inline>
-                  <TextInput source="localeKey" helperText={false} />
-                  <TextInput source="title" helperText={false} />
-                  <TextInput source="description" helperText={false} />
-              </SimpleFormIterator>
+        <SimpleFormIterator inline>
+          <TextInput source="localeKey" helperText={false} />
+          <TextInput source="title" helperText={false} />
+          <TextInput source="description" helperText={false} />
+        </SimpleFormIterator>
       </ArrayInput>
-  </SimpleForm>
-</Edit>
+    </SimpleForm>
+  </Edit>
 );

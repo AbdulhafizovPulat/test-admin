@@ -1,12 +1,11 @@
 import { Admin, Resource, Login } from "react-admin";
 import  apiProvider  from './API/apiService';
 // Finance Admin API
-import { AgentsList, AgentsCreate, AgentsEdit } from "./Pages Finance/agents";
-import { ApplicationsList, ApplicationsCreate, ApplicationsEdit } from "./Pages Finance/applications"
+import { AgentsList, AgentsShow, AgentsCreate, AgentsEdit } from "./Pages Finance/agents";
+import { ApplicationsList, ApplicationsShow, ApplicationsCreate, ApplicationsEdit } from "./Pages Finance/applications"
 import { CategoriesList, CategoriesCreate, CategoriesEdit } from "./Pages Finance/categories"
 import { FinOrganList, FinOrganCreate, FinOrganEdit } from "./Pages Finance/finOrganizations" 
 import { FinProductsList, FinProductsCreate, FinProductsEdit} from "./Pages Finance/finProducts"
-import { MerchantAgentsList, MerchantAgentsCreate} from "./Pages Finance/merchantAgents"
 import { MerchantsList, MerchantsShow, MerchantsCreate, MerchantsEdit} from "./Pages Finance/merchants"
 import { ShopsList, ShopsCreate, ShopsEdit } from "./Pages Finance/shops.js"
 
@@ -16,7 +15,6 @@ import AppsIcon from '@mui/icons-material/Apps';
 import CategoryIcon from '@mui/icons-material/Category';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
-import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import HowToRegIcon from '@mui/icons-material/HowToReg';
 
 // Platform Admin API
@@ -29,7 +27,7 @@ import { bankAccountsList, bankAccountsCreate, bankAccountsEdit } from "./Pages 
 import { OrganizationsCompanyCreate } from "./API/Organizations.create.js"
 
 // Functions
-import { Dashboard } from "./Pages Finance/Dashboard";
+import { Dashboard } from "./Pages Finance/Dashboard.js";
 import { authProvider } from "./functions/authProvider"; 
 import { i18nProvider } from "./functions/i18nProvider";
 
@@ -46,12 +44,11 @@ const MyLoginPage = () => (
 const App = () => (
 <Admin authProvider={authProvider} i18nProvider={i18nProvider} dashboard={Dashboard} dataProvider={apiProvider} loginPage={MyLoginPage}>
     {/* Finance */}
-    <Resource name="agents" list={AgentsList} create={AgentsCreate} edit={AgentsEdit} icon={GroupsIcon} recordRepresentation="id"/>
-    <Resource name="apps" list={ApplicationsList} create={ApplicationsCreate} edit={ApplicationsEdit} icon={AppsIcon} recordRepresentation="name"/>
+    <Resource name="agents" list={AgentsList} show={AgentsShow} create={AgentsCreate} edit={AgentsEdit} icon={GroupsIcon} recordRepresentation="id"/>
+    <Resource name="apps" list={ApplicationsList} show={ApplicationsShow} create={ApplicationsCreate} edit={ApplicationsEdit} icon={AppsIcon} recordRepresentation="name"/>
     <Resource name="categories" list={CategoriesList} create={CategoriesCreate} edit={CategoriesEdit} icon={CategoryIcon} recordRepresentation="id"/>
     <Resource name="finorgs" list={FinOrganList} create={FinOrganCreate} edit={FinOrganEdit} icon={AccountBalanceIcon} recordRepresentation="id" />
     <Resource name="finproducts" list={FinProductsList} create={FinProductsCreate} edit={FinProductsEdit} icon={LocalGroceryStoreIcon} recordRepresentation="name"/>
-    <Resource name="merchantagents" list={MerchantAgentsList} create={MerchantAgentsCreate} icon={PeopleAltIcon}/>
     <Resource name="merchants" list={MerchantsList} show={MerchantsShow} create={MerchantsCreate} edit={MerchantsEdit} icon={HowToRegIcon} recordRepresentation="id"/>
     <Resource name="shops" list={ShopsList} create={ShopsCreate} edit={ShopsEdit} />
     

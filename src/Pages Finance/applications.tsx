@@ -6,21 +6,31 @@ import {
   SimpleForm,
   TextInput,
   Edit,
-  Create,
+  Create,Show,TabbedShowLayout
 } from "react-admin";
 
 
 export const ApplicationsList = () => (
-  <List>
-    <Datagrid>
-      <TextField source="id" />
+  <List sx={{ mr: 10}}>
+    <Datagrid sx={{ width: 1400}} rowClick="show">
+      <TextField source="id" sx={{ fontWeight: 800}}/>
       <TextField source="name" />
       <TextField source="appType" />
       <EditButton />
     </Datagrid>
   </List>
 );
-
+export const ApplicationsShow = () => (
+  <Show sx={{mr:100}}>
+  <TabbedShowLayout sx={{ width: 700}}>
+  <TabbedShowLayout.Tab label="Приложение">
+      <TextField source="id" sx={{my: 2, fontSize: 15, fontWeight: 800}}/>
+      <TextField source="name" sx={{my: 2, fontSize: 17}}/>
+      <TextField source="appType" sx={{my: 2, fontSize: 17}}/>
+    </TabbedShowLayout.Tab>
+  </TabbedShowLayout>
+</Show>
+);
 
 
 export const ApplicationsCreate = () => (
