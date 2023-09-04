@@ -9,7 +9,6 @@ import {
   Edit,
   ReferenceField,
   ReferenceInput,
-  BulkDeleteButton,
   ReferenceArrayField,
   SingleFieldList,
   ChipField,
@@ -18,14 +17,22 @@ import {
   ArrayField,
   ArrayInput,
   SimpleFormIterator,
+  DatagridConfigurable,
+  TopToolbar,
+  SelectColumnsButton,
+  TabbedShowLayout,
+  Show,
 } from "react-admin";
 import { Grid } from "@mui/material";
+const PostListActions = () => (
+  <TopToolbar>
+    <SelectColumnsButton />
+  </TopToolbar>
+);
 
 export const FinProductsList = () => (
-  <List>
-    <Datagrid
-      bulkActionButtons={<BulkDeleteButton mutationMode="pessimistic" />}
-    >
+  <List actions={<PostListActions />} sx={{ mr: 200 }}>
+    <DatagridConfigurable rowClick="show">
       <TextField source="id" />
       <ReferenceField source="finOrgId" reference="finorgs" />
 
@@ -105,9 +112,99 @@ export const FinProductsList = () => (
       </ArrayField>
 
       <EditButton />
-    </Datagrid>
+    </DatagridConfigurable>
   </List>
 );
+export const FinProductShow = () => (
+  <Show sx={{ mr: 120 }}>
+    <TabbedShowLayout sx={{ width: 700 }}>
+      <TabbedShowLayout.Tab label="Идентификации">
+        <TextField source="id" sx={{ my: 2, fontSize: 16}}/>
+        <ReferenceField source="finOrgId" reference="finorgs" sx={{ my: 2}}/>
+        <WrapperField label="resources.finproducts.fields.identification">
+          <TextField source="identification.provider" sx={{ my: 2}}/>
+          <TextField source="identification.method" sx={{ my: 2}}/>
+        </WrapperField>
+      </TabbedShowLayout.Tab>
+
+      <TabbedShowLayout.Tab label="Значении">
+        <TextField source="term.duration" sx={{ my: 2}}/>
+        <TextField source="term.type" sx={{ my: 2}}/>
+        <WrapperField label="resources.finproducts.fields.value" >
+          <TextField source="maxValue" sx={{ my: 2}}/>
+          <TextField source="minValue" />
+        </WrapperField>
+        <TextField source="addedValue" sx={{ my: 2}}/>
+        <TextField source="comissionValue" sx={{ my: 2}}/>
+        <WrapperField label="resources.finproducts.fields.prepay">
+          <TextField source="prepayValue" sx={{ my: 2}}/>
+          <TextField source="prepayValueType" sx={{ marginX: 1 }} />
+          <TextField source="prepayTimeout" />
+        </WrapperField>
+      </TabbedShowLayout.Tab>
+
+      <TabbedShowLayout.Tab label="Типы">
+        <TextField source="productSource" sx={{ my: 2}}/>
+        <TextField source="dealType" sx={{ my: 2}}/>
+        <TextField source="scheduleOn" sx={{ my: 2}}/>
+        <TextField source="scoreGuarantee" sx={{ my: 2}}/>
+
+        <WrapperField label="resources.finproducts.fields.scoring">
+          <TextField source="scoring.provider" sx={{ my: 2}}/>
+          <TextField source="scoring.model" sx={{ my: 2}}/>
+        </WrapperField>
+
+        <WrapperField label="resources.finproducts.fields.scheduler">
+          <TextField source="scheduler.provider" sx={{ my: 2 }} />
+          <TextField source="scheduler.method"  sx={{ my: 2}}/>
+        </WrapperField>
+
+        <WrapperField label="resources.finproducts.fields.coBorrower">
+          <TextField source="coBorrower.min" sx={{ my: 2}}/>
+          <TextField source="coBorrower.max" />
+        </WrapperField>
+
+        <WrapperField label="resources.finproducts.fields.guarantee">
+          <TextField source="guarantee.min" sx={{ my: 2}}/>
+          <TextField source="guarantee.max" />
+        </WrapperField>
+      </TabbedShowLayout.Tab>
+
+      <TabbedShowLayout.Tab label="Агенты">
+        <ReferenceArrayField
+          label="resources.finproducts.fields.categories"
+          reference="categories"
+          source="categories"
+          sx={{ my: 2}}
+        >
+          <SingleFieldList>
+            <ChipField source="name" />
+          </SingleFieldList>
+        </ReferenceArrayField>
+
+        <ReferenceArrayField
+          label="resources.finproducts.fields.merchants"
+          reference="merchants"
+          source="merchants"
+          sx={{ my: 2}}
+        >
+          <SingleFieldList>
+            <ChipField source="name" />
+          </SingleFieldList>
+        </ReferenceArrayField>
+
+        <ArrayField source="locales" >
+          <Datagrid bulkActionButtons={false}>
+            <TextField source="localeKey" />
+            <TextField source="title" />
+            <TextField source="description" />
+          </Datagrid>
+        </ArrayField>
+      </TabbedShowLayout.Tab>
+    </TabbedShowLayout>
+  </Show>
+);
+
 export const FinProductsCreate = () => (
   <Create>
     <SimpleForm>
@@ -119,23 +216,27 @@ export const FinProductsCreate = () => (
           <ReferenceArrayInput source="merchants" reference="merchants" />
         </Grid>
         <Grid item xs={4}>
-          <TextInput source="maxValue" sx={{ marginRight: 5 }}/>
+          <TextInput source="maxValue" sx={{ marginRight: 5 }} />
           <TextInput source="minValue" />
-          <TextInput source="addedValue" sx={{ marginRight: 5 }}/>
+          <TextInput source="addedValue" sx={{ marginRight: 5 }} />
           <TextInput source="comissionValue" />
-          <TextInput source="prepayValue" sx={{ marginRight: 5 }}/>
+          <TextInput source="prepayValue" sx={{ marginRight: 5 }} />
           <TextInput source="prepayValueType" />
-          <TextInput source="prepayTimeout" sx={{ marginRight: 5 }}/>
+          <TextInput source="prepayTimeout" sx={{ marginRight: 5 }} />
           <TextInput source="productSource" />
-          <TextInput source="dealType" sx={{ marginRight: 5 }}/>
+          <TextInput source="dealType" sx={{ marginRight: 5 }} />
           <TextInput source="scheduleOn" />
           <TextInput source="scoreGuarantee" />
         </Grid>
         <Grid item xs={4}>
-          <TextInput source="term.duration" label="duration" sx={{ marginRight: 5 }}/>
+          <TextInput
+            source="term.duration"
+            label="duration"
+            sx={{ marginRight: 5 }}
+          />
           <TextInput source="term.type" label="type" />
 
-          <TextInput source="scoring.provider" sx={{ marginRight: 5 }}/>
+          <TextInput source="scoring.provider" sx={{ marginRight: 5 }} />
           <TextInput source="scoring.model" />
 
           <TextInput
@@ -145,15 +246,14 @@ export const FinProductsCreate = () => (
           />
           <TextInput source="identification.method" />
 
-          <TextInput source="scheduler.provider" sx={{ marginRight: 5 }}/>
+          <TextInput source="scheduler.provider" sx={{ marginRight: 5 }} />
           <TextInput source="scheduler.method" />
 
-          <TextInput source="coBorrower.min" sx={{ marginRight: 5 }}/>
+          <TextInput source="coBorrower.min" sx={{ marginRight: 5 }} />
           <TextInput source="coBorrower.max" />
 
-          <TextInput source="guarantee.min" sx={{ marginRight: 5 }}/>
+          <TextInput source="guarantee.min" sx={{ marginRight: 5 }} />
           <TextInput source="guarantee.max" />
-
         </Grid>
       </Grid>
       <ArrayInput source="locales">

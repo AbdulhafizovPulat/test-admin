@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader } from "@mui/material";
 export const Dashboard = () => ( 
   
   <Card  sx={{
-    mt: 2,
+    mt: 5,
     width: 1450,
     mr: 50,
     backgroundColor: "#17BF02",

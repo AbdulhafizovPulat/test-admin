@@ -9,7 +9,7 @@ import {
     ReferenceInput
   } from "react-admin";
   
-  export const bankAccountsList = () => (
+  export const BankAccountsList = () => (
     <List>
       <Datagrid>
         <TextField source="id" />
@@ -19,7 +19,7 @@ import {
       </Datagrid>
     </List>
   );
-  export const bankAccountsCreate = () => (
+  export const BankAccountsCreate = () => (
     <Create>
       <SimpleForm>
         <ReferenceInput source="orgId" reference="organizations" sx={{ width: 300 }}/>
@@ -28,7 +28,7 @@ import {
       </SimpleForm>
     </Create>
   );
-  export const bankAccountsEdit = () => (
+  export const BankAccountsEdit = () => (
     <Create>
       <SimpleForm>
         <ReferenceInput source="orgId" reference="organizations" sx={{ width: 300 }}/>

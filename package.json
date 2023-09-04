@@ -15,6 +15,7 @@
     "i18next-browser-languagedetector": "^7.0.1",
     "i18next-http-backend": "^2.2.0",
     "node-polyglot": "^2.5.0",
+    "ra-core": "^4.13.0",
     "ra-data-json-server": "^4.10.1",
     "ra-data-simple-rest": "^4.10.6",
     "ra-language-french": "^4.10.2",
